@@ -35,28 +35,31 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn 
     }
 
     return (
-        <Tippy
-            delay={[0, 700]}
-            // offset={[16, 8]}
-            interactive
-            placement="bottom-end"
-            hideOnClick={hideOnClick}
-            onHide={() => setHistory(prev => prev.slice(0,1))}
-            render={(attrs) => (
-                <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
-                    <Wrapper className={cx('menu-popper')}>
-                        {history.length > 1 && <Header title='Language' onBack={() => {
-                            setHistory(prev => prev.slice(0, prev.length-1))
-                        }}/>}
-                        <div className={cx('menu-body')}>
-                            {renderItems()}
-                        </div>
-                    </Wrapper>
-                </div>
-            )}
-        >
-            {children}
-        </Tippy>
+        // Using a wrapper <div> or <span> tag around the reference element solves this by creating a new parentNode context. 
+        <div>
+            <Tippy
+                delay={[0, 700]}
+                // offset={[16, 8]}
+                interactive
+                placement="bottom-end"
+                hideOnClick={hideOnClick}
+                onHide={() => setHistory(prev => prev.slice(0,1))}
+                render={(attrs) => (
+                    <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
+                        <Wrapper className={cx('menu-popper')}>
+                            {history.length > 1 && <Header title='Language' onBack={() => {
+                                setHistory(prev => prev.slice(0, prev.length-1))
+                            }}/>}
+                            <div className={cx('menu-body')}>
+                                {renderItems()}
+                            </div>
+                        </Wrapper>
+                    </div>
+                )}
+            >
+                {children}
+            </Tippy>
+        </div>
     )
 }
 
