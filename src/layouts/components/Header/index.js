@@ -1,10 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faEllipsisVertical, faSignOut } from '@fortawesome/free-solid-svg-icons'
+
 import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
-import { Link } from 'react-router-dom'
 
 import styles from './Header.module.scss'
 import images from '../../../assets/images'
